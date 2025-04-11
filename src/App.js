@@ -2,13 +2,32 @@ import "./styles.css";
 const profileData = {
   name: "Kai Grao",
   desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio incidunt dolore deserunt corrupti sunt modi vitae illo culpa quia?",
-  skills: [
-    "Html, Css",
-    "Javascript",
-    "Web Design",
-    "Git and Github",
-    "React",
-    "Angular",
+  userSkills: [
+    {
+      level: "Advanced",
+      skill: "React",
+      color: "#61DBFB", // React Blue
+    },
+    {
+      level: "Intermediate",
+      skill: "JavaScript",
+      color: "#F0DB4F", // JavaScript Yellow
+    },
+    {
+      level: "Beginner",
+      skill: "HTML",
+      color: "#E34C26", // HTML Orange
+    },
+    {
+      level: "Intermediate",
+      skill: "CSS",
+      color: "#264de4", // CSS Blue
+    },
+    {
+      level: "Advanced",
+      skill: "TypeScript",
+      color: "#007ACC", // TypeScript Blue
+    },
   ],
 };
 
@@ -36,7 +55,7 @@ function Details() {
   return (
     <div className="profile-details">
       <NameDesc name={profileData.name} desc={profileData.desc} />
-      <Skills skill={profileData.skills} />
+      <Skills skill={profileData.userSkills} />
     </div>
   );
 }
@@ -48,14 +67,29 @@ function NameDesc(props) {
     </div>
   );
 }
-function Skills(props) {
+function Skills({ skill }) {
   return (
     <div className="skill">
-      {props.skill.map((e, index) => (
-        <span key={index} id={"id" + index}>
-          {e}
-        </span>
-      ))}
+      {skill.map((elem, idx) => {
+        return (
+          <span style={{ backgroundColor: elem.color }} key={idx}>
+            {elem.skill}
+            <Emoji level={elem.level} />
+          </span>
+        );
+      })}
     </div>
   );
+}
+
+function Emoji({ level }) {
+  let emojiSign = "";
+  if (level === "Advanced") {
+    emojiSign = "💪";
+  } else if (level === "Intermediate") {
+    emojiSign = "👍";
+  } else {
+    emojiSign = "😊";
+  }
+  return emojiSign;
 }
