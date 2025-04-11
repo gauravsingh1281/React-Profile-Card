@@ -72,9 +72,26 @@ function Skills({ skill }) {
     <div className="skill">
       {skill.map((elem, idx) => {
         return (
-          <span style={{ backgroundColor: elem.color }} key={idx}>
-            {elem.skill}
-            <Emoji level={elem.level} />
+          <span
+            style={{
+              backgroundColor: elem.color,
+              marginRight: "5px",
+              padding: "4px 5px",
+              lineHeight: 2,
+              borderRadius: "6px",
+            }}
+            key={idx}
+          >
+            <span>
+              {elem.skill}
+
+              {/* <Emoji level={elem.level} /> */}
+            </span>
+            <span>
+              {elem.level === "Beginner" && "😊"}
+              {elem.level === "Intermediate" && "👍"}
+              {elem.level === "Advanced" && "💪"}
+            </span>
           </span>
         );
       })}
